@@ -1,0 +1,50 @@
+== Welcome to easy_slider
+
+easy_slider is a plugin for jQuery that enables you to paginate your page content and slide it just like many gallery sliders do
+
+
+== Getting Started
+
+1. Download easy_twitter_timeline
+2. Add easy_slider and jQuery to your document
+3. Enjoy!
+
+== How to use
+
+To use easy_slider just use "paggeable" as your class in all the elements you wish to paginate:
+
+=== Markup
+  <div id="content">
+    <p class="paggeable">The quick</p>
+    <p class="paggeable">brown fox</p>
+    <p class="paggeable">jumped over</p>
+    <p class="paggeable">the lazy</p>
+    <p class="paggeable">hound</p>
+  </div>
+  
+=== JavaScript
+
+You only need to add easy_accordion to the selector of your choice
+
+  $(document).ready(function() {
+    $("#content").easy_slider();
+  });
+  
+== Customize
+
+easy_slider first parameter object supports 8 options:
+
+  page:		        // default: 1  The page you wish to load
+  per_page			  // default: 5	 The number of items you wish to load
+  nextText 			  // default: 'Next'	Next page link Text
+  backText 			  // default: 'Back'	Previous page link Text
+  firstText			  // default: 'First' First page link Text
+  lastText			  // default: 'Last' Last page link Text
+  indicatorText	  // default: true Page indicator text, it can be formmated by a string with this format: 'page [n] of [m]'
+  indicator		  	// default: true Wheter or not we should show the indicator text
+  
+In case you need to use a different class than "paggeable" easy_slider supports a second parameter which is the selector you want to affect
+
+  $("#content").easy_slider( { indicatorText: 'pagina [n] de [m]' }, '.collection' );
+
+This will group and paginate all elements with class collection

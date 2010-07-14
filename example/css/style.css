@@ -1,0 +1,22 @@
+.slide{
+	padding: 2px 10px;
+	border: 1px solid #333;
+	margin: 0 3px;
+	text-decoration: none;
+	color: #333;
+	font: 0.75em 'Lucida Grande',sans-serif;
+}
+
+.paggeable {
+  border: 1px solid #EEEEEE;
+  list-style-type: none;
+  padding: 5px 25px;
+}
+
+li.paggeable:hover{
+	background-color: #EEE;
+}
+
+ul{
+	width: 300px;
+}

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" ></script>
+    <script type="text/javascript" src="../easy_slider.min.js"></script>
+    <title>Easy slider</title>
+  </head>
+  <body>
+    <div id="content">
+    
+      <h2>Sliding content is fun</h2>
+      <ul>
+        <li class="paggeable" >The cool thing</li>
+        <li class="paggeable" >about easy slider</li>
+        <li class="paggeable" >is not only the fade effect</li>
+        <li class="paggeable" >but the fact that</li>
+        <li class="paggeable" >it behaves</li>
+        <li class="paggeable" >just like regular</li>
+        <li class="paggeable" >pagination and for</li>
+        <li class="paggeable" >many reasons</li>
+        <li class="paggeable" >that's awesome!</li>
+        <li class="paggeable" >The quick brown</li>
+        <li class="paggeable" >fox jumped over</li>
+        <li class="paggeable" >the lazy hound</li>
+        <li class="paggeable" >A bear is just</li>
+        <li class="paggeable" >a man who made a choice</li>
+      </ul>
+    
+    </div>
+    
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $("#content").easy_slider( { indicatorText: 'pagina [n] de [m]' } );
+      });
+    </script>
+  </body>
+</html>
