@@ -5,7 +5,7 @@ easy_slider is a plugin for jQuery that enables you to paginate your page conten
 
 == Getting Started
 
-1. Download easy_twitter_timeline
+1. Download easy_slider
 2. Add easy_slider and jQuery to your document
 3. Enjoy!
 
@@ -24,7 +24,7 @@ To use easy_slider just use "paggeable" as your class in all the elements you wi
   
 === JavaScript
 
-You only need to add easy_accordion to the selector of your choice
+You only need to add easy_slider to the selector of your choice
 
   $(document).ready(function() {
     $("#content").easy_slider();
