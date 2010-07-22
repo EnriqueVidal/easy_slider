@@ -34,14 +34,15 @@ You only need to add easy_slider to the selector of your choice
 
 easy_slider first parameter object supports 8 options:
 
-  page:		        // default: 1  The page you wish to load
-  per_page			  // default: 5	 The number of items you wish to load
-  nextText 			  // default: 'Next'	Next page link Text
-  backText 			  // default: 'Back'	Previous page link Text
-  firstText			  // default: 'First' First page link Text
-  lastText			  // default: 'Last' Last page link Text
-  indicatorText	  // default: true Page indicator text, it can be formmated by a string with this format: 'page [n] of [m]'
-  indicator		  	// default: true Wheter or not we should show the indicator text
+  page:		          // default: 1  The page you wish to load
+  per_page		      // default: 5	 The number of items you wish to load
+  nextText 		      // default: 'Next'	Next page link Text
+  backText 		      // default: 'Back'	Previous page link Text
+  firstText		      // default: 'First' First page link Text
+  lastText		      // default: 'Last' Last page link Text
+  indicatorText	      // default: true Page indicator text, it can be formmated by a string with this format: 'page [n] of [m]'
+  indicator		      // default: true Wheter or not we should show the indicator text
+  indicatorPosition   // default: 'bottom' it allows you to choose wheter pagination should appear in the 'bottom', 'top' or 'both' sides of the paginated elements 
   
 In case you need to use a different class than "paggeable" easy_slider supports a second parameter which is the selector you want to affect
 
