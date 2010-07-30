@@ -3,15 +3,15 @@ $.fn.easy_slider = function(obj, selector) {
 	if (!selector)	selector 	= '.paggeable';
 	
 	// Fix values in case client do not send them
-	obj.page				= ( obj.page				== undefined )		? 1					: obj.page;
-	obj.per_page			= ( obj.per_page 			== undefined  )		? 5					: obj.per_page;
-	obj.nextText 			= ( obj.nextText 			== undefined  ) 	? 'Next' 			: obj.nextText;
-	obj.backText 			= ( obj.backText 			== undefined  ) 	? 'Back' 			: obj.backText;
-	obj.firstText			= ( obj.firstText		 	== undefined  ) 	? 'First'			: obj.firstText;
-	obj.lastText			= ( obj.lastText			== undefined  ) 	? 'Last'			: obj.lastText;
-	obj.indicatorText		= ( obj.indicatorText 		== undefined )		? 'page [n] of [m]'	: obj.indicatorText;	
-	obj.indicator			= ( obj.indicator 			== undefined ) 		? true				: obj.indicator;
-	obj.inidicatorPosition	= ( obj.indicatorPosition 	== undefined )		? 'bottom'			: obj.indicatorPosition;
+	obj.page								= ( obj.page								== undefined )	? 1									: obj.page;
+	obj.per_page						= ( obj.per_page 						== undefined )	? 5									: obj.per_page;
+	obj.nextText 						= ( obj.nextText 						== undefined ) 	? 'Next' 						: obj.nextText;
+	obj.backText 						= ( obj.backText 						== undefined ) 	? 'Back' 						: obj.backText;
+	obj.firstText						= ( obj.firstText		 				== undefined ) 	? 'First'						: obj.firstText;
+	obj.lastText						= ( obj.lastText						== undefined ) 	? 'Last'						: obj.lastText;
+	obj.indicatorText				= ( obj.indicatorText 			== undefined )	? 'page [n] of [m]'	: obj.indicatorText;	
+	obj.indicator						= ( obj.indicator 					== undefined )	? true							: obj.indicator;
+	obj.inidicatorPosition	= ( obj.indicatorPosition 	== undefined )	? 'bottom'					: obj.indicatorPosition;
 	
 	var total_number_records 	= $(selector).length;
 	var more_pages 				= null;
@@ -77,17 +77,18 @@ function current_page(selector, value, pages, display, position)
 }
 
 // Create the movement links
-function move(obj, position)
+function move(obj, original_paginate_obj)
 {
 	var css_selectors = new Array();
+	var position 			= original_paginate_obj.indicatorPosition;
 	
 	if ( position == 'both' )
 	{
 		css_selectors[0] = obj.cssId + '-bottom';
 		css_selectors[1] = obj.cssId + '-top';
 		
-		$(obj.selector).parent().after('<a id="' + css_selectors[0] + '" href="#' + obj.href + '" class="' + obj.cssClass + '" >' + obj.text + '</a>');
-		$(obj.selector).parent().before('<a id="' + css_selectors[1] + '" href="#' + obj.href + '" class="' + obj.cssClass + '" >' + obj.text + '</a>');
+		$(obj.selector).parent().after('<a id="' + css_selectors[0] + '" href="#' + obj.href + '" class="' + obj.cssClass + '" >' 	+ obj.text + '</a>');
+		$(obj.selector).parent().before('<a id="' + css_selectors[1] + '" href="#' + obj.href + '" class="' + obj.cssClass + '" >' 	+ obj.text + '</a>');
 	}
 	
 	if ( position == 'bottom' ) $(obj.selector).parent().after('<a id="' + obj.cssId + '" href="#' + obj.href + '" class="' + obj.cssClass + '" >' + obj.text + '</a>');
@@ -96,13 +97,29 @@ function move(obj, position)
 	if ( position != 'both' )
 	{
 		$("#" + obj.cssId).click(function() {
-			$(obj.selector).parent().easy_slider({ page: obj.page, per_page: obj.per_page, indicatorText: obj.indicatorText, indicatorPosition: position }, obj.selector);
+			$(obj.selector).parent().easy_slider({ 	page: 							obj.page, 
+																							per_page: 					obj.per_page, 
+																							indicatorText: 			obj.indicatorText, 
+																							indicatorPosition: 	position,
+																							nextText:						original_paginate_obj.nextText,
+																							backText:						original_paginate_obj.backText,
+																							firstText:					original_paginate_obj.firstText,
+																							lastText:						original_paginate_obj.lastText
+																						}, obj.selector);
 			return false;
 		});
 	} else {
 		for ( i = 0; i < css_selectors.length; i++ )
 			$("#" + css_selectors[i]).click(function() {
-			$(obj.selector).parent().easy_slider({ page: obj.page, per_page: obj.per_page, indicatorText: obj.indicatorText, indicatorPosition: position }, obj.selector);
+			$(obj.selector).parent().easy_slider({ 	page: 							obj.page, 
+																							per_page: 					obj.per_page, 
+																							indicatorText: 			obj.indicatorText, 
+																							indicatorPosition: 	position,
+																							nextText:						original_paginate_obj.nextText,
+																							backText:						original_paginate_obj.backText,
+																							firstText:					original_paginate_obj.firstText,
+																							lastText:						original_paginate_obj.lastText
+																						}, obj.selector);
 			return false;
 		});
 	}
@@ -145,47 +162,47 @@ function move_direction(direction, obj, selector, pages)
 	switch(direction)
 	{
 		case 'forward':
-			move({ cssId: 			'easy_slider_move_forward', 
-					href: 			'move_forward', 
-					text: 			obj.nextText, 
-					selector: 		selector, 
-					page: 			( obj.page + 1 ), 
-					per_page: 		obj.per_page, 
-					cssClass: 		'slide',
-					indicatorText:  obj.indicatorText }, obj.indicatorPosition);
+			move({ 	cssId: 					'easy_slider_move_forward', 
+							href:						'move_forward', 
+							text: 					obj.nextText, 
+							selector: 			selector, 
+							page: 					obj.page + 1, 
+							per_page: 			obj.per_page, 
+							cssClass: 			'slide',
+							indicatorText:  obj.indicatorText }, obj);
 		break;
 		
 		case 'backward':
-			move({ cssId: 		'easy_slider_move_backward', 
-				href: 			'move_backward', 
-				text: 			obj.backText, 
-				selector: 		selector, 
-				page: 			( obj.page - 1), 
-				per_page: 		obj.per_page, 
-				cssClass: 		'slide',
-				indicatorText:  obj.indicatorText }, obj.indicatorPosition);
+			move({ 	cssId: 					'easy_slider_move_backward', 
+							href:						'move_backward', 
+							text: 					obj.backText, 
+							selector: 			selector, 
+							page: 					obj.page - 1, 
+							per_page: 			obj.per_page, 
+							cssClass: 			'slide',
+							indicatorText:  obj.indicatorText }, obj);
 		break;
 		
 		case 'first':
-			move({ cssId: 			'easy_slider_move_first', 
-					href:			'move_first', 
-					text: 			obj.firstText, 
-					selector: 		selector, 
-					page: 			1, 
-					per_page: 		obj.per_page, 
-					cssClass: 		'slide',
-					indicatorText:  obj.indicatorText }, obj.indicatorPosition);
+			move({ 	cssId: 					'easy_slider_move_first', 
+							href:						'move_first', 
+							text: 					obj.firstText, 
+							selector: 			selector, 
+							page: 					1, 
+							per_page: 			obj.per_page, 
+							cssClass: 			'slide',
+							indicatorText:  obj.indicatorText }, obj);
 		break;
 		
 		case 'last':
-			move({ 	cssId: 			'easy_slider_move_last', 
-					href: 			'move_last', 
-					text: 			obj.lastText, 
-					selector: 		selector, 
-					page: 			pages, 
-					per_page: 		obj.per_page, 
-					cssClass: 		'slide',
-					indicatorText:  obj.indicatorText  }, obj.indicatorPosition);
+			move({ 	cssId: 					'easy_slider_move_last', 
+							href: 					'move_last', 
+							text: 					obj.lastText, 
+							selector: 			selector, 
+							page: 					pages, 
+							per_page: 			obj.per_page, 
+							cssClass: 			'slide',
+							indicatorText:  obj.indicatorText  }, obj);
 		break;
 	}
 }
