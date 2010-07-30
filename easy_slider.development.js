@@ -72,8 +72,8 @@ function current_page(selector, value, pages, display, position)
 		$(selector).parent().after('<span id="current_page" class="current_page-bottom">' + indicatorText + '</span>');
 		$(selector).parent().before('<span id="current_page" class="current_page-top">' + indicatorText + '</span>');
 	}
-	if ( position == 'bottom' ) $(selector).parent().after('<span id="current_page-bottom" >' + indicatorText + '</span>');
-	if ( position == 'top' )  	$(selector).parent().before('<span id="current_page-top" >' + indicatorText + '</span>');
+	if ( position == 'bottom' ) $(selector).parent().after('<span class="current_page-bottom" >' + indicatorText + '</span>');
+	if ( position == 'top' )  	$(selector).parent().before('<span class="current_page-top" >' + indicatorText + '</span>');
 }
 
 // Create the movement links
